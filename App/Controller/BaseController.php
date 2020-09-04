@@ -35,11 +35,13 @@ abstract class BaseController implements IController
      */
     public function __construct()
     {
-        $jsonConfig = file_get_contents(
-            self::GetRootDir() . 'Config' . DIRECTORY_SEPARATOR . 'config.json'
-        );
+        if (null === self::$config) {
+            $jsonConfig = file_get_contents(
+                self::GetRootDir() . 'Config' . DIRECTORY_SEPARATOR . 'config.json'
+            );
 
-        self::$config = JSON::Decode($jsonConfig);
+            self::$config = JSON::Decode($jsonConfig);
+        }
     }
 
     /**
