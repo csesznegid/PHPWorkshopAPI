@@ -7,5 +7,6 @@
     "user": "usr",
     "password": "pwd"
   },
-  "ip_filter": ["127.0.0.1", "::1", "192.168"]
+  "ip_filter": ["127.0.0.1", "::1", "192.168"],
+  "os_filter": ["Linux", "Mac OS", "Windows"]
 }

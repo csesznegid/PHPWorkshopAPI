@@ -44,6 +44,28 @@ abstract class BaseController implements IController
         }
     }
 
+    protected function osFilter()
+    {
+        $osRegEx = array(
+            '/iphone|ipod|ipad|android|blackberry|webos/i' => 'Mobile',
+            '/windows/i'                                   => 'Windows',
+            '/macintosh|mac os x/i'                        => 'Mac OS',
+            '/linux/i'                                     => 'Linux',
+        );
+
+        $clientOS = '';
+        foreach ($osRegEx as $regEx => $os) {
+            if (preg_match($regEx, Server::Get('HTTP_USER_AGENT'))) {
+                $clientOS = $os;
+                break;
+            }
+        }
+
+        if (!in_array($clientOS, self::$config->os_filter)) {
+            throw new \Exception('Access denied from this operating system. ' . $clientOS);
+        }
+    }
+
     protected function getDatabaseConnection()
     {
         return Connection::Get(self::$config->database);
