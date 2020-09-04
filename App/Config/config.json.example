@@ -1,0 +1,10 @@
+{
+  "database": {
+    "_comment": "MySQL Database only.",
+    "host": "localhost",
+    "port": "3306",
+    "name": "api_db",
+    "user": "usr",
+    "password": "pwd"
+  }
+}
