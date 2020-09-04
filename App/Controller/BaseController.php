@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Framework\Database\Connection;
 use Framework\Helper\JSON;
 
 abstract class BaseController implements IController
@@ -15,6 +16,11 @@ abstract class BaseController implements IController
         );
 
         self::$config = JSON::Decode($jsonConfig);
+    }
+
+    protected function getDatabaseConnection()
+    {
+        return Connection::Get(self::$config->database);
     }
 
     protected static function GetRootDir()
