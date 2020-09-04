@@ -26,6 +26,24 @@ abstract class BaseController implements IController
         }
     }
 
+    protected function ipFilter()
+    {
+        $clientIP   = (Server::Has('REMOTE_ADDR') ? Server::Get('REMOTE_ADDR') : '');
+        $allowedIPs = self::$config->ip_filter;
+
+        $isAllowed  = false;
+        foreach ($allowedIPs as $allowedIP) {
+            if (stristr($clientIP, $allowedIP)) {
+                $isAllowed = true;
+                break;
+            }
+        }
+
+        if (!$isAllowed) {
+            throw new \Exception('Access denied from this IP address. ' . $clientIP);
+        }
+    }
+
     protected function getDatabaseConnection()
     {
         return Connection::Get(self::$config->database);
