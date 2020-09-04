@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the "PHP Workshop - API" package
+ *
+ * @author Denes Csesznegi
+ * @since  2020.09.03.
+ */
+
 $service = (array_key_exists('service', $_REQUEST) ? $_REQUEST['service'] : '');
 try {
     require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'autoloader.php');

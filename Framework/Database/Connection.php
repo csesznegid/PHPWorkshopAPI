@@ -1,18 +1,49 @@
 <?php
 
+/**
+ * This file is part of the "PHP Workshop - API" package
+ *
+ * @author Denes Csesznegi
+ * @since  2020.09.03.
+ */
+
 namespace Framework\Database;
 
 use Framework\Database\Exception\DatabaseConnectionException;
 
+/**
+ * Database connection
+ *
+ * @package Framework\Database
+ */
 class Connection
 {
+    /**
+     * Database connection
+     *
+     * @var    null|\PDO $db
+     * @access private
+     * @static
+     */
     private static $db = null;
 
+    /**
+     * @access public
+     */
     public function __destruct()
     {
         self::$db = null;
     }
 
+    /**
+     * Get database connection
+     *
+     * @param  object $config
+     * @return null|\PDO
+     * @throws \Framework\Database\Exception\DatabaseConnectionException
+     * @access public
+     * @static
+     */
     public static function Get($config)
     {
         self::ConnectToDatabase($config);
@@ -20,6 +51,14 @@ class Connection
         return self::$db;
     }
 
+    /**
+     * Connect to the database
+     *
+     * @param  object $config
+     * @throws \Framework\Database\Exception\DatabaseConnectionException
+     * @access private
+     * @static
+     */
     private static function ConnectToDatabase($config)
     {
         try {

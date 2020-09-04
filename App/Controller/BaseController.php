@@ -1,15 +1,38 @@
 <?php
 
+/**
+ * This file is part of the "PHP Workshop - API" package
+ *
+ * @author Denes Csesznegi
+ * @since  2020.09.03.
+ */
+
 namespace App\Controller;
 
 use Framework\Database\Connection;
 use Framework\Helper\JSON;
 use Framework\SuperGlobal\Server;
 
+/**
+ * Abstract class for common controller properties and methods
+ *
+ * @package App\Controller
+ * @abstract
+ */
 abstract class BaseController implements IController
 {
+    /**
+     * Configurations
+     *
+     * @var    null|object
+     * @access private
+     * @static
+     */
     private static $config = null;
 
+    /**
+     * @access public
+     */
     public function __construct()
     {
         $jsonConfig = file_get_contents(
@@ -19,6 +42,13 @@ abstract class BaseController implements IController
         self::$config = JSON::Decode($jsonConfig);
     }
 
+    /**
+     * HTTP request method filter
+     *
+     * @param  string|array $onlyAllowed e.g. "GET" or ["GET", "POST"]
+     * @throws \Exception
+     * @access protected
+     */
     protected function methodFilter($onlyAllowed)
     {
         if (Server::Has('REQUEST_METHOD') && !in_array(Server::Get('REQUEST_METHOD'), (array)$onlyAllowed)) {
@@ -26,6 +56,12 @@ abstract class BaseController implements IController
         }
     }
 
+    /**
+     * IP address filter
+     *
+     * @throws \Exception
+     * @access protected
+     */
     protected function ipFilter()
     {
         $clientIP   = (Server::Has('REMOTE_ADDR') ? Server::Get('REMOTE_ADDR') : '');
@@ -44,6 +80,12 @@ abstract class BaseController implements IController
         }
     }
 
+    /**
+     * Operating system filter
+     *
+     * @throws \Exception
+     * @access protected
+     */
     protected function osFilter()
     {
         $osRegEx = array(
@@ -66,11 +108,25 @@ abstract class BaseController implements IController
         }
     }
 
+    /**
+     * Get database connection
+     *
+     * @return null|\PDO
+     * @throws \Framework\Database\Exception\DatabaseConnectionException
+     * @access protected
+     */
     protected function getDatabaseConnection()
     {
         return Connection::Get(self::$config->database);
     }
 
+    /**
+     * Get app root directory
+     *
+     * @return string
+     * @access protected
+     * @static
+     */
     protected static function GetRootDir()
     {
         return (dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
