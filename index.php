@@ -7,9 +7,13 @@
  * @since  2020.09.03.
  */
 
-$service = (array_key_exists('service', $_REQUEST) ? $_REQUEST['service'] : '');
+$service = '';
 try {
     require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'autoloader.php');
+    if (\Framework\SuperGlobal\Request::Has('service')) {
+        $service = \Framework\SuperGlobal\Request::Get('service');
+    }
+
     \Framework\Logger\Logger::Access('Access to ' . $service);
 
     $controllerClass = ('\App\Controller\\' . $service . 'Controller');
