@@ -54,4 +54,28 @@ abstract class Query
 
         return (int)$db->lastInsertId();
     }
+
+    /**
+     * Generates a WHERE clause
+     *
+     * @param  array $where
+     * @return array
+     * @access protected
+     * @static
+     */
+    protected static function GetWhere(&$where = array())
+    {
+        $whereStr = " WHERE TRUE ";
+        $bind     = array();
+        foreach ($where as $field => $value) {
+            $bindStr        = (':where_' . $field);
+            $whereStr      .= (" AND `" . $field . "` = " . $bindStr);
+            $bind[$bindStr] = $value;
+        }
+
+        return array(
+            'where' => $whereStr,
+            'bind'  => $bind,
+        );
+    }
 }
