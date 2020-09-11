@@ -20,6 +20,7 @@ interface IController
      * Run the service
      *
      * @return \Framework\Response\JSONResponse|string Data as JSON
+     * @throws \Exception
      * @access public
      */
     public function run();
