@@ -24,6 +24,7 @@ class GetCurrenciesController extends BaseController
     public function run()
     {
         $this->methodFilter('GET');
+        $this->checkAccessToken();
 
         $client           = new \SoapClient(parent::$config->mnb_soap_url);
         $currenciesXML    = $client->GetCurrencies()->GetCurrenciesResult;
