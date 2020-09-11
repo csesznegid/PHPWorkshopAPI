@@ -25,10 +25,10 @@ abstract class BaseController implements IController
      * Configurations
      *
      * @var    null|object
-     * @access private
+     * @access protected
      * @static
      */
-    private static $config = null;
+    protected static $config = null;
 
     /**
      * @access public
