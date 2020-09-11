@@ -32,4 +32,18 @@ abstract class ASCII
 
         return implode('', $ascii);
     }
+
+    /**
+     * Get Only alpha-numeric characters of ASCII
+     *
+     * @return string
+     * @access public
+     * @static
+     */
+    public static function GetAlphaNumericCharacters()
+    {
+        $ascii = self::GetCharacters();
+
+        return preg_replace('/[^A-Z0-9]*/i', '', $ascii);
+    }
 }
