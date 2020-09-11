@@ -8,5 +8,6 @@
     "password": "pwd"
   },
   "ip_filter": ["127.0.0.1", "::1", "192.168"],
-  "os_filter": ["Linux", "Mac OS", "Windows"]
+  "os_filter": ["Linux", "Mac OS", "Windows"],
+  "mnb_soap_url": "http://www.mnb.hu/arfolyamok.asmx?wsdl"
 }
