@@ -13,6 +13,7 @@ namespace Framework\Helper;
  * ASCII helper class
  *
  * @package Framework\Helper
+ * @abstract
  */
 abstract class ASCII
 {

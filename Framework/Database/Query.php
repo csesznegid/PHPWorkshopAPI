@@ -21,7 +21,7 @@ abstract class Query
      * Executes an INSERT statement
      *
      * @param  \PDO &$db
-     * @param  $table
+     * @param  string $table
      * @param  array $values
      * @return int
      * @access public
@@ -59,7 +59,7 @@ abstract class Query
      * Executes a SELECT statement
      *
      * @param  \PDO &$db
-     * @param  $table
+     * @param  string $table
      * @param  array $where
      * @param  bool $selectOnlyOne
      * @return null|object|array

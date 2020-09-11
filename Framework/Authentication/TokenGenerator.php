@@ -12,7 +12,7 @@ namespace Framework\Authentication;
 use Framework\Helper\ASCII;
 
 /**
- * Class TokenGenerator
+ * Token Generator
  *
  * @package Framework\Authentication
  * @abstract
