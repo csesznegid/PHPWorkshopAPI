@@ -10,7 +10,9 @@
 namespace App\Controller;
 
 use Framework\Database\Connection;
+use Framework\Database\Query;
 use Framework\Helper\JSON;
+use Framework\SuperGlobal\Request;
 use Framework\SuperGlobal\Server;
 
 /**
@@ -107,6 +109,27 @@ abstract class BaseController implements IController
 
         if (!in_array($clientOS, self::$config->os_filter)) {
             throw new \Exception('Access denied from this operating system. ' . $clientOS);
+        }
+    }
+
+    /**
+     * Check if token is valid
+     *
+     * @throws \Framework\Database\Exception\DatabaseConnectionException
+     * @throws \Exception
+     * @access protected
+     */
+    protected function checkAccessToken()
+    {
+        if (!Request::Has('token')) {
+            throw new \Exception('Token not provided.');
+        }
+
+        $db          = $this->getDatabaseConnection();
+        $tokenFromDB = Query::Select($db, 'token_authentication', array('token' => Request::Get('token')), true);
+
+        if (!is_object($tokenFromDB) || (new \DateTime('now') >= new \DateTime($tokenFromDB->expire_date))) {
+            throw new \Exception('Authentication error.');
         }
     }
 
