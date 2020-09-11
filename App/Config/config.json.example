@@ -9,5 +9,6 @@
   },
   "ip_filter": ["127.0.0.1", "::1", "192.168"],
   "os_filter": ["Linux", "Mac OS", "Windows"],
-  "mnb_soap_url": "http://www.mnb.hu/arfolyamok.asmx?wsdl"
+  "mnb_soap_url": "http://www.mnb.hu/arfolyamok.asmx?wsdl",
+  "norris_joke_url": "https://api.icndb.com/jokes/random"
 }
