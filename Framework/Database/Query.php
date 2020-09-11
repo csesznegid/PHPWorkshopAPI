@@ -56,6 +56,32 @@ abstract class Query
     }
 
     /**
+     * Executes a SELECT statement
+     *
+     * @param  \PDO &$db
+     * @param  $table
+     * @param  array $where
+     * @param  bool $selectOnlyOne
+     * @return null|object|array
+     * @access public
+     * @static
+     */
+    public static function Select(\PDO &$db, $table, $where = array(), $selectOnlyOne = false)
+    {
+        $whereArr  = self::GetWhere($where);
+        $statement = $db->prepare(
+            " SELECT * FROM `" . $table . "`" . $whereArr['where']
+            . (($selectOnlyOne) ? " LIMIT 1 " : "")
+        );
+        $statement->execute($whereArr['bind']);
+
+        return ($selectOnlyOne
+            ? $statement->fetch(\PDO::FETCH_OBJ)
+            : $statement->fetchAll(\PDO::FETCH_OBJ)
+        );
+    }
+
+    /**
      * Generates a WHERE clause
      *
      * @param  array $where
