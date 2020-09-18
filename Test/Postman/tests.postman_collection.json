@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "ca1a34ce-f1a2-4a96-a19c-7d1cfac4d91f",
+		"name": "PHPWorkshopAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetRandomNumber",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "589102e4-6069-4155-a099-5a7499ce3b9f",
+						"exec": [
+							"pm.test(\"Status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Body\", function() {\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is number?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.a(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Greater than or equal to `min`\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.gte(\r",
+							"        parseInt(pm.request.url.query.toObject().min)\r",
+							"    );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Less than or equal to `max`\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.lte(\r",
+							"        parseInt(pm.request.url.query.toObject().max)\r",
+							"    );\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost/PHPWorkshopAPI/?service=GetRandomNumber&max=125627892&min=52374",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPWorkshopAPI",
+						""
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "GetRandomNumber"
+						},
+						{
+							"key": "max",
+							"value": "125627892"
+						},
+						{
+							"key": "min",
+							"value": "52374"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccessToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "14ff2ab7-0a2d-4ae9-9609-40052019834a",
+						"exec": [
+							"pm.test(\"Status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Body\", function() {\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is String?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.a(\"string\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPWorkshopAPI/?service=GetAccessToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPWorkshopAPI",
+						""
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "GetAccessToken"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCurrencies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "057cae15-d486-47f5-bd63-fb392445fade",
+						"exec": [
+							"pm.test(\"Status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Body\", function() {\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is valid data type?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.a(\"object\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is empty?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).not.to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPWorkshopAPI/?service=GetCurrencies&token=1600353431jqpKUWrWqnBSMJhkX0Gznf24heqJp1EJzdEunQacUT4ZxowxuhbwB7OJkv20q1ju1EQDhlOvG7yi7wVF3ByCbgLE0lp5QPeGzanV6xXil3l9972rfbx4qmDfK8LMgcqm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPWorkshopAPI",
+						""
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "GetCurrencies"
+						},
+						{
+							"key": "token",
+							"value": "1600353431jqpKUWrWqnBSMJhkX0Gznf24heqJp1EJzdEunQacUT4ZxowxuhbwB7OJkv20q1ju1EQDhlOvG7yi7wVF3ByCbgLE0lp5QPeGzanV6xXil3l9972rfbx4qmDfK8LMgcqm"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetNorrisJoke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df52b54e-ec3e-41dc-9d10-2ee97044f752",
+						"exec": [
+							"pm.test(\"Status 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"JSON Body\", function() {\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is valid data type?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.be.a(\"object\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is empty?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has `type` property?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed).to.have.property(\"type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is success?\", function() {\r",
+							"    let parsed = pm.response.json();\r",
+							"    pm.expect(parsed.type).to.equals(\"success\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PHPWorkshopAPI/?service=GetNorrisJoke",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PHPWorkshopAPI",
+						""
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "GetNorrisJoke"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
